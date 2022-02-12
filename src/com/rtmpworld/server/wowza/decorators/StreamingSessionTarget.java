@@ -2,7 +2,7 @@ package com.rtmpworld.server.wowza.decorators;
 
 
 
-import com.rtmpworld.server.wowza.StreamingProtocols;
+import com.rtmpworld.server.wowza.enums.StreamingProtocols;
 import com.rtmpworld.server.wowza.utils.WowzaUtils;
 import com.wowza.wms.application.IApplicationInstance;
 import com.wowza.wms.client.IClient;

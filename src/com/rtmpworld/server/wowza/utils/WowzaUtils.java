@@ -1,6 +1,7 @@
 package com.rtmpworld.server.wowza.utils;
 
-import com.rtmpworld.server.wowza.StreamingProtocols;
+
+import com.rtmpworld.server.wowza.enums.StreamingProtocols;
 import com.wowza.wms.application.IApplicationInstance;
 import com.wowza.wms.client.IClient;
 import com.wowza.wms.httpstreamer.model.IHTTPStreamerSession;

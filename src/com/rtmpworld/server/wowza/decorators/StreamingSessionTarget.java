@@ -9,6 +9,7 @@ import com.wowza.wms.client.IClient;
 import com.wowza.wms.httpstreamer.model.IHTTPStreamerSession;
 import com.wowza.wms.rtp.model.RTPSession;
 import com.wowza.wms.stream.IMediaStream;
+import com.wowza.wms.webrtc.model.WebRTCSession;
 
 public class StreamingSessionTarget {
 	
@@ -60,6 +61,7 @@ public class StreamingSessionTarget {
 			
 			case RTSP:							
 			case WEBRTC:
+			case SRT:
 				RTPSession rtpSession = (RTPSession) ((IMediaStream) target).getRTPStream().getSession();
 				return rtpSession.getIp();
 			
@@ -84,8 +86,12 @@ public class StreamingSessionTarget {
 				client.setShutdownClient(true);
 			break;
 			
-			case RTSP:							
 			case WEBRTC:
+				WebRTCSession webRTCSession = ((RTPSession) target).getWebRTCSession();
+				appInstance.getVHost().getWebRTCContext().shutdownSession(webRTCSession.getSessionId());
+				break;
+			case RTSP:
+			case SRT:
 				RTPSession rtpSession = (RTPSession) target;
 				appInstance.getVHost().getRTPContext().shutdownRTPSession(rtpSession);
 			break;

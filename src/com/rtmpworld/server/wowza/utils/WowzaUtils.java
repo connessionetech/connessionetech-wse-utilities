@@ -8,6 +8,7 @@ import com.wowza.wms.httpstreamer.model.IHTTPStreamerSession;
 import com.wowza.wms.rtp.model.RTPSession;
 import com.wowza.wms.rtp.model.RTPStream;
 import com.wowza.wms.stream.IMediaStream;
+import com.wowza.wms.webrtc.model.WebRTCSession;
 
 public class WowzaUtils {
 	
@@ -24,6 +25,7 @@ public class WowzaUtils {
 			
 			case RTSP:							
 			case WEBRTC:
+			case SRT:
 				RTPSession rtpSession = stream.getRTPStream().getSession();
 				instance.getVHost().getRTPContext().shutdownRTPSession(rtpSession);
 			break;
@@ -52,7 +54,17 @@ public class WowzaUtils {
 	
 	public static void terminateSession(IApplicationInstance instance, RTPSession session)
 	{
-		instance.getVHost().getRTPContext().shutdownRTPSession(session);
+		StreamingProtocols protocol = WowzaUtils.getClientProtocol(session);
+		
+		if(protocol == StreamingProtocols.RTSP || protocol == StreamingProtocols.SRT)
+		{		
+			instance.getVHost().getRTPContext().shutdownRTPSession(session);
+		}
+		else if(protocol == StreamingProtocols.WEBRTC)
+		{
+			WebRTCSession webRTCSession = (session).getWebRTCSession();
+			instance.getVHost().getWebRTCContext().shutdownSession(webRTCSession.getSessionId());
+		}	
 	}
 	
 	
@@ -89,6 +101,10 @@ public class WowzaUtils {
 				{
 					return StreamingProtocols.WEBRTC;
 				}
+				if(rtpStream.isSRT())
+				{
+					return StreamingProtocols.SRT;
+				}
 				else
 				{
 					return StreamingProtocols.RTSP;
@@ -111,6 +127,10 @@ public class WowzaUtils {
 	{
 		if (rtpSession != null)
 		{
+			if(rtpSession.isWebRTC())
+			{
+				return StreamingProtocols.WEBRTC;
+			}
 			if(rtpSession.isWebRTC())
 			{
 				return StreamingProtocols.WEBRTC;

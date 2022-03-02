@@ -4,5 +4,6 @@ public enum AuthMode {
 	NONE,
 	ONCONNECT,
 	ONPUBLISH,
-	ONSUBSCRIBE
+	ONSUBSCRIBE,
+	UNKNOWN
 }

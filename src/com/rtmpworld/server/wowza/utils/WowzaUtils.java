@@ -52,6 +52,24 @@ public class WowzaUtils {
 	}
 	
 	
+	
+	public static void rejectAndTerminateSession(IApplicationInstance instance, RTPSession session)
+	{
+		StreamingProtocols protocol = WowzaUtils.getClientProtocol(session);
+		session.rejectSession();
+		
+		if(protocol == StreamingProtocols.RTSP || protocol == StreamingProtocols.SRT)
+		{		
+			instance.getVHost().getRTPContext().shutdownRTPSession(session);
+		}
+		else if(protocol == StreamingProtocols.WEBRTC)
+		{
+			WebRTCSession webRTCSession = (session).getWebRTCSession();
+			instance.getVHost().getWebRTCContext().shutdownSession(webRTCSession.getSessionId());
+		}	
+	}
+	
+	
 	public static void terminateSession(IApplicationInstance instance, RTPSession session)
 	{
 		StreamingProtocols protocol = WowzaUtils.getClientProtocol(session);

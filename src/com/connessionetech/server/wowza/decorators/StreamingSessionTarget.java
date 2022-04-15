@@ -1,9 +1,9 @@
-package com.rtmpworld.server.wowza.decorators;
+package com.connessionetech.server.wowza.decorators;
 
 
 
-import com.rtmpworld.server.wowza.enums.StreamingProtocols;
-import com.rtmpworld.server.wowza.utils.WowzaUtils;
+import com.connessionetech.server.wowza.enums.StreamingProtocols;
+import com.connessionetech.server.wowza.utils.WowzaUtils;
 import com.wowza.wms.application.IApplicationInstance;
 import com.wowza.wms.client.IClient;
 import com.wowza.wms.httpstreamer.model.IHTTPStreamerSession;

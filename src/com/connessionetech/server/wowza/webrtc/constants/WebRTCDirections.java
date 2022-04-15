@@ -1,4 +1,4 @@
-package com.rtmpworld.server.wowza.webrtc.constants;
+package com.connessionetech.server.wowza.webrtc.constants;
 
 public class WebRTCDirections {
 

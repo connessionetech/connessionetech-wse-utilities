@@ -1,4 +1,4 @@
-package com.rtmpworld.server.wowza.webrtc.model;
+package com.connessionetech.server.wowza.webrtc.model;
 
 public class WebRTCJSONStr {
 

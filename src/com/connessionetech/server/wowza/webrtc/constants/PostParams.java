@@ -1,4 +1,4 @@
-package com.rtmpworld.server.wowza.webrtc.constants;
+package com.connessionetech.server.wowza.webrtc.constants;
 
 public class PostParams {
 	
@@ -6,10 +6,11 @@ public class PostParams {
 	public static String SESSION_TYPE = "sessiontype";
 	public static String CLIENT_IP = "clientip";
 	public static String FORWARDED_IP = "forwardedip";
-	public static String QUERY_STRING = "queryStr";
+	public static String QUERY_STRING = "querystr";
 	public static String REFERRER = "referrer";
 	public static String USER_AGENT = "useragent";
 	public static String USER_DATA = "userdata";
 	public static String URI = "uri";
+	public static String COOKIE_STR = "cookiestr";
 
 }
